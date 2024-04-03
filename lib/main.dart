@@ -41,47 +41,72 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        // Título App
+        title: const Text('IMD SHOP', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.redAccent,
+        // Botão Perfil
+        actions: <Widget>[
+          InkWell(
+              onTap: () {},
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                margin: const EdgeInsets.only(right: 20),
+                padding: const EdgeInsets.all(8),
+                child: const Icon(Icons.person_outline, color: Colors.white),
+              )
+          ),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 200,
-              margin: const EdgeInsets.only(bottom: 20),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(10),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 200,
+                margin: const EdgeInsets.only(bottom: 20),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/images/bannerHome.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
-            Expanded(
-              child: GridView.count(
-                mainAxisSpacing: 20.0, //espaçamento entre as linhas
-                crossAxisSpacing: 20.0, //espaçamento entre as colunas
-                crossAxisCount: 2, //quantidade de colunas
+              // Substituído GridView por Wrap
+              Wrap(
+                spacing: 20.0, // Espaçamento horizontal
+                runSpacing: 20.0, // Espaçamento vertical
                 children: [
                   for (var i = 0; i < 14; i++)
-                    Card(
-                      child: Column(
-                        children: [
-                          Image.asset('assets/images/placeholder.png'),
-                          Text('Product $i'),
-                        ],
+                    Container(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width / 2 - 30, // Largura ajustada
+                      child: Card(
+                        child: Column(
+                          children: [
+                            Text('Product $i'),
+                          ],
+                        ),
                       ),
                     ),
                 ],
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
+      // Botão Carrinho
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.shopping_cart),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
