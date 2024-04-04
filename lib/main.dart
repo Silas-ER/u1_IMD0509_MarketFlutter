@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'models/produto.dart';
 
 void main() => runApp(const MarketApp());
 
@@ -29,13 +30,92 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+final List<Produto> produtos = [
+  Produto(
+      id: 1,
+      nome: 'Projetor M9',
+      preco: 29.99,
+      descricao: 'Projetor portátil com resolução HD',
+    ),
+    Produto(
+      id: 2,
+      nome: 'Relogio Smartwatch',
+      preco: 59.99,
+      descricao: 'Relógio inteligente com monitor de batimentos cardíacos',
+    ),
+    Produto(
+      id: 3,
+      nome: 'Smartphone M123',
+      preco: 99.99,
+      descricao: 'Smartphone com câmera tripla e 128GB de armazenamento',
+    ),
+    Produto(
+      id: 4,
+      nome: 'Headphone Bluetooth',
+      preco: 39.99,
+      descricao: 'Headphone Bluetooth com microfone embutido',
+    ),
+    Produto(
+      id: 5,
+      nome: 'Tablet t5',
+      preco: 19.99,
+      descricao: 'Tablet com tela de 10 polegadas e 64GB de armazenamento',
+    ),
+    Produto(
+      id: 6,
+      nome: 'Camera Digital',
+      preco: 79.99,
+      descricao: 'Câmera digital com lente intercambiável',
+    ),
+    Produto(
+      id: 7,
+      nome: 'Smartphone M1',
+      preco: 49.99,
+      descricao: 'Smartphone com câmera tripla e 64GB de armazenamento',
+    ),
+    Produto(
+      id: 8,
+      nome: 'Notebook N1',
+      preco: 29.99,
+      descricao: 'Notebook com processador i5 e 8GB de RAM',
+    ),
+    Produto(
+      id: 9,
+      nome: 'Fone TWS',
+      preco: 19.99,
+      descricao: 'Fone de ouvido sem fio com estojo carregador',
+    ),
+    Produto(
+      id: 10,
+      nome: 'Tablet t3',
+      preco: 9.99,
+      descricao: 'Tablet com tela de 7 polegadas e 32GB de armazenamento',
+    ),
+    Produto(
+      id: 11,
+      nome: 'Smartphone M2',
+      preco: 14.99,
+      descricao: 'Smartphone com câmera dupla e 32GB de armazenamento',
+    ),
+    Produto(
+      id: 12,
+      nome: 'Smartwatch S1',
+      preco: 9.99,
+      descricao: 'Relógio inteligente com monitor de batimentos cardíacos',
+    ),
+    Produto(
+      id: 13,
+      nome: 'Notebook N25',
+      preco: 19.99,
+      descricao: 'Notebook com processador i3 e 4GB de RAM',
+    ),
+    Produto(
+      id: 14,
+      nome: 'Fone TWS 4',
+      preco: 14.99,
+      descricao: 'Fone de ouvido sem fio com estojo carregador',
+    ),
+];
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +171,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Card(
                         child: Column(
                           children: [
-                            Text('Product $i'),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset('assets/images/product$i.png'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Text(
+                                produtos[i].nome,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              ),
                           ],
                         ),
                       ),
