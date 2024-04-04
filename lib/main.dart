@@ -39,7 +39,7 @@ final List<Produto> produtos = [
     ),
     Produto(
       id: 2,
-      nome: 'Relogio Smartwatch',
+      nome: 'Relogio Smart',
       preco: 59.99,
       descricao: 'Relógio inteligente com monitor de batimentos cardíacos',
     ),
@@ -51,7 +51,7 @@ final List<Produto> produtos = [
     ),
     Produto(
       id: 4,
-      nome: 'Headphone Bluetooth',
+      nome: 'Headphone Bt',
       preco: 39.99,
       descricao: 'Headphone Bluetooth com microfone embutido',
     ),
