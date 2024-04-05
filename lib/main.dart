@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:u1_project/components/login_page.dart';
 import 'models/produto.dart';
+import 'components/login_page.dart';
+
 
 void main() => runApp(const MarketApp());
 
@@ -41,7 +43,7 @@ final List<Produto> produtos = [
     ),
     Produto(
       id: 2,
-      nome: 'Relogio Smartwatch',
+      nome: 'Relogio Smart',
       preco: 59.99,
       descricao: 'Relógio inteligente com monitor de batimentos cardíacos',
     ),
@@ -53,7 +55,7 @@ final List<Produto> produtos = [
     ),
     Produto(
       id: 4,
-      nome: 'Headphone Bluetooth',
+      nome: 'Headphone Bt',
       preco: 39.99,
       descricao: 'Headphone Bluetooth com microfone embutido',
     ),
@@ -129,18 +131,25 @@ final List<Produto> produtos = [
         // Botão Perfil
         actions: <Widget>[
           InkWell(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[800],
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                margin: const EdgeInsets.only(right: 20),
-                padding: const EdgeInsets.all(8),
-                child: const Icon(Icons.person_outline, color: Colors.white),
-              )
+            onTap: () {
+              // Navegar para a página de login quando o ícone for clicado
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[800],
+                borderRadius: BorderRadius.circular(100),
+              ),
+              margin: const EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.all(8),
+              child: const Icon(Icons.person_outline, color: Colors.white),
+            ),
           ),
         ],
+
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -204,4 +213,5 @@ final List<Produto> produtos = [
       ),
     );
   }
+
 }

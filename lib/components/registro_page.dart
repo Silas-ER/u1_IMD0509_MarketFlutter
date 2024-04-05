@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
-import 'registro_page.dart'; // Importe a página de registro
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class RegistroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Cadastro'),
       ),
       body: Center(
         child: Padding(
@@ -21,6 +13,10 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              TextField(
+                decoration: InputDecoration(labelText: 'Nome'),
+              ),
+              SizedBox(height: 20),
               TextField(
                 decoration: InputDecoration(labelText: 'Email'),
               ),
@@ -32,19 +28,17 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Adicione a lógica para autenticação aqui
+                  // Adicione a lógica para criar a conta aqui
                 },
-                child: Text('Login'),
+                child: Text('Cadastrar'),
               ),
-              TextButton(
+              SizedBox(height: 20),
+              ElevatedButton(
                 onPressed: () {
-                  // Navegar para a página de registro quando clicado
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegistroPage()),
-                  );
+                  // Navega de volta para a página de login
+                  Navigator.pop(context);
                 },
-                child: Text('Não tem uma conta? Cadastre-se'),
+                child: Text('Voltar'),
               ),
             ],
           ),
