@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:u1_project/components/login_page.dart';
 import 'models/produto.dart';
 
 void main() => runApp(const MarketApp());
@@ -15,21 +16,22 @@ class MarketApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: ''),
+      home: const LoginPage(),
+      routes: {
+        "/home" : (context) => HomePage()
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
 final List<Produto> produtos = [
   Produto(
       id: 1,
