@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:u1_project/components/compra_page.dart';
+import 'package:u1_project/components/exibir_carrinho.dart';
 import 'package:u1_project/components/login_page.dart';
 import 'models/produto.dart';
 import 'components/login_page.dart';
@@ -21,7 +23,8 @@ class MarketApp extends StatelessWidget {
       ),
       home: const HomePage(),
       routes: {
-        "/home" : (context) => HomePage()
+        "/home" : (context) => HomePage(),
+        "/finalizarCompra" : (context) => CompraPage()
       },
     );
   }
@@ -135,6 +138,24 @@ class _HomePageState extends State<HomePage> {
       imagemUrl: 'assets/images/product13.png',
     ),
   ];
+  final List<Produto> produtosCarrinho = [];
+
+  _openModalCarrinho(){
+    showModalBottomSheet(
+        context: context,
+        builder:(_) {
+          return CarrinhoPage(produtos: produtosCarrinho, deleteCarrinho: _deleteCarrinho,);
+        }
+    );
+  }
+
+  _deleteCarrinho(Produto produto){
+    produtosCarrinho.remove(produto);
+  }
+
+  _addCarrinho(Produto produto) {
+    produtosCarrinho.add(produto);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +216,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ProdutoPage(produto: produtos[i])),
+                            MaterialPageRoute(builder: (context) => ProdutoPage(produto: produtos[i], addCarrinho: _addCarrinho,)),
                           );
                         },
                         child: Card(
@@ -228,7 +249,7 @@ class _HomePageState extends State<HomePage> {
       ),
       // Botão Carrinho
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: _openModalCarrinho,
         child: const Icon(Icons.shopping_cart),
       ),
     );
