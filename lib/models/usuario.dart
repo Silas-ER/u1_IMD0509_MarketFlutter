@@ -1,15 +1,15 @@
-class User {
+class Usuario {
   int id;
   String name;
   String email;
   String password;
-  int idCarrinho;
+  int? idCarrinho;
 
-  User({
+  Usuario({
     required this.id,
     required this.name,
     required this.email,
     required this.password,
-    required this.idCarrinho
+    this.idCarrinho
   });
 }

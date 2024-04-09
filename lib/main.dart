@@ -1,10 +1,15 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:u1_project/components/compra_page.dart';
 import 'package:u1_project/components/exibir_carrinho.dart';
+import 'package:u1_project/components/lista_compras_page.dart';
 import 'package:u1_project/components/login_page.dart';
+import 'package:u1_project/models/vendedor.dart';
 import 'models/produto.dart';
 import 'components/login_page.dart';
 import 'components/produto_page.dart';
+import 'models/usuario.dart';
 
 
 void main() => runApp(const MarketApp());
@@ -21,23 +26,26 @@ class MarketApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: HomePage(),
       routes: {
         "/home" : (context) => HomePage(),
-        "/finalizarCompra" : (context) => CompraPage()
+        "/finalizarCompra" : (context) => CompraPage(),
+        "/compras" : (context) => ListaComprasPage()
       },
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  Usuario? usuario;
+  HomePage({super.key, this.usuario});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final List<Usuario> usuarios = [];
   final List<Produto> produtos = [
     Produto(
       id: 1,
@@ -45,6 +53,10 @@ class _HomePageState extends State<HomePage> {
       preco: 29.99,
       descricao: 'Projetor portátil com resolução HD',
       imagemUrl: 'assets/images/product0.png',
+      vendedor: Vendedor(
+        id: 1,
+        nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 2,
@@ -52,6 +64,10 @@ class _HomePageState extends State<HomePage> {
       preco: 59.99,
       descricao: 'Relógio inteligente com monitor de batimentos cardíacos',
       imagemUrl: 'assets/images/product1.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 3,
@@ -59,6 +75,10 @@ class _HomePageState extends State<HomePage> {
       preco: 99.99,
       descricao: 'Smartphone com câmera tripla e 128GB de armazenamento',
       imagemUrl: 'assets/images/product2.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 4,
@@ -66,6 +86,10 @@ class _HomePageState extends State<HomePage> {
       preco: 39.99,
       descricao: 'Headphone Bluetooth com microfone embutido',
       imagemUrl: 'assets/images/product3.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 5,
@@ -73,6 +97,10 @@ class _HomePageState extends State<HomePage> {
       preco: 19.99,
       descricao: 'Tablet com tela de 10 polegadas e 64GB de armazenamento',
       imagemUrl: 'assets/images/product4.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 6,
@@ -80,6 +108,10 @@ class _HomePageState extends State<HomePage> {
       preco: 79.99,
       descricao: 'Câmera digital com lente intercambiável',
       imagemUrl: 'assets/images/product5.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 7,
@@ -87,6 +119,10 @@ class _HomePageState extends State<HomePage> {
       preco: 49.99,
       descricao: 'Smartphone com câmera tripla e 64GB de armazenamento',
       imagemUrl: 'assets/images/product6.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 8,
@@ -94,6 +130,10 @@ class _HomePageState extends State<HomePage> {
       preco: 29.99,
       descricao: 'Notebook com processador i5 e 8GB de RAM',
       imagemUrl: 'assets/images/product7.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 9,
@@ -101,6 +141,10 @@ class _HomePageState extends State<HomePage> {
       preco: 19.99,
       descricao: 'Fone de ouvido sem fio com estojo carregador',
       imagemUrl: 'assets/images/product8.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 10,
@@ -108,6 +152,10 @@ class _HomePageState extends State<HomePage> {
       preco: 9.99,
       descricao: 'Tablet com tela de 7 polegadas e 32GB de armazenamento',
       imagemUrl: 'assets/images/product9.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 11,
@@ -115,6 +163,10 @@ class _HomePageState extends State<HomePage> {
       preco: 14.99,
       descricao: 'Smartphone com câmera dupla e 32GB de armazenamento',
       imagemUrl: 'assets/images/product10.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 12,
@@ -122,6 +174,10 @@ class _HomePageState extends State<HomePage> {
       preco: 9.99,
       descricao: 'Relógio inteligente com monitor de batimentos cardíacos',
       imagemUrl: 'assets/images/product11.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 13,
@@ -129,6 +185,10 @@ class _HomePageState extends State<HomePage> {
       preco: 19.99,
       descricao: 'Notebook com processador i3 e 4GB de RAM',
       imagemUrl: 'assets/images/product12.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
     Produto(
       id: 14,
@@ -136,6 +196,10 @@ class _HomePageState extends State<HomePage> {
       preco: 14.99,
       descricao: 'Fone de ouvido sem fio com estojo carregador',
       imagemUrl: 'assets/images/product13.png',
+      vendedor: Vendedor(
+          id: 1,
+          nomeLoja: "Loja teste"
+      )
     ),
   ];
   final List<Produto> produtosCarrinho = [];
@@ -144,7 +208,7 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
         context: context,
         builder:(_) {
-          return CarrinhoPage(produtos: produtosCarrinho, deleteCarrinho: _deleteCarrinho,);
+          return CarrinhoPage(produtos: produtosCarrinho, deleteCarrinho: _deleteCarrinho, usuario: widget.usuario,);
         }
     );
   }
@@ -159,6 +223,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    widget.usuario = (ModalRoute.of(context)!.settings.arguments) != null ? ModalRoute.of(context)!.settings.arguments as Usuario : null;
+
     return Scaffold(
       appBar: AppBar(
         // Título App
@@ -169,12 +235,10 @@ class _HomePageState extends State<HomePage> {
           InkWell(
             onTap: () {
               // Navegar para a página de login quando o ícone for clicado
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-              );
+
             },
-            child: Container(
+            child:
+            (widget.usuario!=null) ? Container(
               decoration: BoxDecoration(
                 color: Colors.grey[800],
                 borderRadius: BorderRadius.circular(100),
@@ -182,7 +246,12 @@ class _HomePageState extends State<HomePage> {
               margin: const EdgeInsets.only(right: 20),
               padding: const EdgeInsets.all(8),
               child: const Icon(Icons.person_outline, color: Colors.white),
-            ),
+            ) : ElevatedButton(onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            }, child: Text("Login")),
           ),
         ],
 
@@ -248,10 +317,10 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       // Botão Carrinho
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: (widget.usuario!=null) ? FloatingActionButton(
         onPressed: _openModalCarrinho,
         child: const Icon(Icons.shopping_cart),
-      ),
+      ) : null,
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../models/usuario.dart';
 import 'registro_page.dart'; // Importe a página de registro
 
 class LoginPage extends StatefulWidget {
@@ -9,6 +10,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,17 +25,33 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextField(
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email'),
+                controller: _emailController,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
-                decoration: InputDecoration(labelText: 'Senha'),
+                decoration: const InputDecoration(labelText: 'Senha'),
+                controller: _senhaController,
                 obscureText: true,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Adicione a lógica para autenticação aqui
+                  if (_emailController.text=="usuarioDDM@gmail.com") {
+                    if (_senhaController.text=="123456") {
+                      Usuario usuario = Usuario(
+                        id: 1,
+                        name: "Usuário IMD",
+                        email: "usuarioDDM@gmail.com",
+                        password: '',
+                      );
+                      Navigator.pushReplacementNamed(context, "/home", arguments: usuario);
+                    }
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:
+                      Text("Email não encontrado")
+                    ));
+                  }
                 },
                 child: Text('Login'),
               ),

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../models/produto.dart';
+import '../models/usuario.dart';
 
 class CarrinhoPage extends StatefulWidget {
   List<Produto> produtos;
+  Usuario? usuario;
   Function(Produto) deleteCarrinho;
-  CarrinhoPage({super.key, required this.produtos, required this.deleteCarrinho});
+  CarrinhoPage({super.key, required this.produtos, required this.deleteCarrinho, this.usuario});
 
   @override
   State<CarrinhoPage> createState() => _CarrinhoPageState();
@@ -105,10 +107,14 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                       padding: const EdgeInsets.symmetric(
                         horizontal: 30
                       ),
-                      child: (produtosCarrinho.length > 0) ?
+                      child: (produtosCarrinho.isNotEmpty) ?
                       ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, "/finalizarCompra", arguments: produtosCarrinho);
+                              List<dynamic> parametros = [
+                                produtosCarrinho,
+                                widget.usuario
+                              ];
+                              Navigator.pushReplacementNamed(context, "/finalizarCompra", arguments: parametros);
                           },
                           child: const Text("FINALIZAR COMPRA"))
                           :

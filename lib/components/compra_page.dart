@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../models/Compra.dart';
+import '../models/compra.dart';
 import '../models/produto.dart';
+import '../models/usuario.dart';
 
 class CompraPage extends StatefulWidget {
   List<Produto>? produtos;
+  Usuario? usuario;
 
-  CompraPage({super.key, this.produtos});
+  CompraPage({super.key, this.produtos, this.usuario});
 
   @override
   State<CompraPage> createState() => _CompraPageState();
@@ -31,36 +33,38 @@ class _CompraPageState extends State<CompraPage> {
     widget.produtos?.forEach((produto) {
       Compra compra = Compra(
         id: 1,
-        idProduto: produto.id,
-        idCliente: 1,
+        produto: produto,
+        usuario: widget.usuario!,
         idVendedor: 1,
         quantidade: 1
       );
       compras.add(compra);
     });
-
+    Navigator.pushReplacementNamed(context, "/compras", arguments: compras);
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.produtos = ModalRoute.of(context)!.settings.arguments as List<Produto>;
+    List<dynamic> objects = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
+    widget.produtos = objects[0];
+    widget.usuario = objects[1];
     _calculoTotalCarrinho();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Finalizar compra"),
+        title: const Text("Finalizar compra"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          const Padding(
               padding: EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 10
               ),
             child: Text("Produtos: ", style: TextStyle(fontSize: 20),),
           ),
-          Container(
+          SizedBox(
             height: 150,
             child: ListView.builder(
                 itemCount: widget.produtos?.length,
@@ -74,7 +78,7 @@ class _CompraPageState extends State<CompraPage> {
                         child: Row(
                           children: [
                             Image.asset(widget.produtos![index].imagemUrl, width: 50,),
-                            Padding(padding: EdgeInsets.all(5)),
+                            const Padding(padding: EdgeInsets.all(5)),
                             Expanded(
                               child: SizedBox(
                                   width: double.infinity,
@@ -85,7 +89,7 @@ class _CompraPageState extends State<CompraPage> {
                                 width: 40,
                                 child: IconButton(
                                     onPressed: () {},
-                                    icon: Icon(Icons.delete)
+                                    icon: const Icon(Icons.delete)
                                 )
                             )
                           ],
@@ -95,16 +99,16 @@ class _CompraPageState extends State<CompraPage> {
                 }
             ),
           ),
-          Divider(),
+          const Divider(),
           Container(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             child: Text("Total da compra: R\$ $totalCarrinho", style: TextStyle(fontSize: 20),),
           ),
           Container(
             alignment: Alignment.center,
             child: ElevatedButton(
                 onPressed: _efetuarCompra,
-                child: Text("COMPRAR")
+                child: const Text("COMPRAR")
             ),
           )
         ],
