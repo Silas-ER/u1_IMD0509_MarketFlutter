@@ -1,11 +1,11 @@
-class Venda {
+class Compra {
   int id;
   int idProduto;
   int quantidade;
   int idVendedor;
   int idCliente;
 
-  Venda({
+  Compra({
     required this.id,
     required this.idProduto,
     required this.quantidade,
